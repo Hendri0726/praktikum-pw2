@@ -1,3 +1,5 @@
+<?php include("data_berita.php"); ?>
+<?php include("data_komentar.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,12 +33,12 @@
       <div class="col-lg-8">
 
         <!-- Title -->
-        <h1 class="mt-4">Post Title</h1>
+        <h1 class="mt-4"><?php echo $berita[0]['judul']; ?></h1>
 
         <!-- Author -->
         <p class="lead">
           by
-          <a href="#">Start Bootstrap</a>
+          <a href="#"><?php echo $berita[0]['penulis']; ?></a>
         </p>
 
         <hr>
@@ -50,8 +52,8 @@
         <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
 
         <hr>
-
-        <!-- Post Content -->
+        <p><?php echo $berita[0]['isi']; ?></p>
+        <!-- Post Content 
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
@@ -69,7 +71,7 @@
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
 
-        <hr>
+        <hr>-->
 
         <!-- Comments Form -->
         <div class="card my-4">
@@ -85,15 +87,16 @@
         </div>
 
         <!-- Single Comment -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        <?php foreach ($komentar as $kom) : ?>
+          <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+              <h5 class="mt-0"><?php echo $kom['nama']; ?></h5>
+              <?php echo $kom['komentar']; ?>
+            </div>
           </div>
-        </div>
-
-        <!-- Comment with nested comments -->
+        <?php endforeach; ?>
+        <!-- Comment with nested comments
         <div class="media mb-4">
           <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
           <div class="media-body">
@@ -117,7 +120,7 @@
             </div>
 
           </div>
-        </div>
+        </div> -->
 
       </div>
 
@@ -131,7 +134,7 @@
   <!-- /.container -->
 
   <!-- Footer -->
- <?php require_once('partial/footer.php') ?>
+  <?php require_once('partial/footer.php') ?>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
