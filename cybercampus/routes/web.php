@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\http\Controllers\SiteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/tentang',[SiteController::class,'tentang']);
+Route::get('/kontak',[SiteController::class,'kontak']);
+Route::get('/layanan',[SiteController::class,'layanan']);
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
