@@ -3,7 +3,7 @@
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,4 +61,14 @@ Route::get('/layanan/hapus/{id}', [LayananController::class, 'hapus'])->name('la
 
 Route::get('/cobaform', [SiteController::class, 'cobaForm'])->name('cobaform');
 
-Route::post('/prosesform', [SiteController::class, 'prosesForm'])->name('prosesform')
+Route::post('/prosesform', [SiteController::class, 'prosesForm'])->name('prosesform');
+
+Route::get('/layanan/index_backend', [SiteBackendController::class, 'indexBackend'])->name('layanan.index_backend');
+Route::get('/admin/dashboard', [SiteBackendController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/layanan', [SiteBackendController::class, 'indexBackend'])->name('admin.layanan');
+Route::post('/layanan/tambah', [SiteBackendController::class, 'tambah'])->name('layanan.tambah');
+Route::post('/layanan/ubah{id}', [SiteBackendController::class, 'ubah'])->name('layanan.ubah');
+Route::get('/layanan/hapus/{id}', [SiteBackendController::class, 'hapus'])->name('layanan.hapus');
+Route::get('/layanan/detailBack/{id}', [SiteBackendController::class, 'detailBack'])->name('layanan.detailBack');
+Route::get('/layanan/tambahback', [SiteBackendController::class, 'tambahBack'])->name('layanan.tambahback');
+Route::get('layanan/ubahfom/{id}', [SiteBackendController::class, 'ubahForm'])->name('layanan.ubahform');
