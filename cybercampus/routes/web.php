@@ -41,6 +41,23 @@ Route::get('cobalangsung', function(){
     echo "test lansung dari route";
 });
 
+Route::get('/admin/kategori/index', [KategoriController::class, 'index'])->name('admin.kategori.index')->middleware('auth');
+Route::get('/admin/kategori/formtambah', [KategoriController::class, 'formTambah'])->name('admin.kategori.formTambah')->middleware('auth');
+Route::get('/admin/kategori/formubah/{id}', [KategoriController::class, 'formUbah'])->name('admin.kategori.formUbah')->middleware('auth');
+Route::post('/admin/kategori/tambah', [KategoriController::class, 'tambah'])->name('admin.kategori.tambah')->middleware('auth');
+Route::post('/admin/kategori/ubah/{id}', [KategoriController::class, 'ubah'])->name('admin.kategori.ubah')->middleware('auth');
+Route::get('/admin/kategori/detail/{id}', [KategoriController::class, 'detail'])->name('admin.kategori.detail')->middleware('auth');
+Route::get('/admin/kategori/hapus/{id}', [KategoriController::class, 'hapus'])->name('admin.kategori.hapus')->middleware('auth');
+
+Route::get('/admin/berita/index', [BeritaController::class, 'index'])->name('admin.berita.index')->middleware(['auth', 'permission:index-berita']);
+Route::get('/admin/berita/detail/{id}', [BeritaController::class, 'detail'])->name('admin.berita.detail')->middleware(['auth', 'permission:detail-berita']);
+Route::get('/admin/berita/formtambah', [BeritaController::class, 'formTambah'])->name('admin.berita.formtambah')->middleware(['auth', 'permission:menambahkan-berita']);
+Route::post('/admin/berita/tambah/', [BeritaController::class, 'tambah'])->name('admin.berita.tambah')->middleware(['auth', 'permission:menambahkan-berita']);
+Route::get('/admin/berita/formubah/{id}', [BeritaController::class, 'formUbah'])->name('admin.berita.formubah')->middleware(['auth', 'permission:edit-berita']);
+Route::post('/admin/berita/ubah/{id}', [BeritaController::class, 'ubah'])->name('admin.berita.ubah')->middleware(['auth', 'permission:edit-berita']);
+Route::get('/admin/berita/hapus/{id}', [BeritaController::class, 'hapus'])->name('admin.berita.hapus')->middleware(['auth', 'permission:hapus-berita']);
+
+
 Route::get('/percontohan', [SiteController::class, 'percontohan']);
 
 Route::get('/layanan-raw', [SiteController::class, 'tampilLayananRaw']);
