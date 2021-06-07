@@ -91,3 +91,8 @@ Route::get('/layanan/tambahback', [SiteBackendController::class, 'tambahBack'])-
 Route::get('layanan/ubahfom/{id}', [SiteBackendController::class, 'ubahForm'])->name('layanan.ubahform');
 
 
+//Gallery
+Route::get('/gallery/upload', [GalleryController::class, 'formUpload'])->name('gallery.upload');
+Route::post('/gallery/proses-upload', [GalleryController::class, 'prosesUpload'])->name('gallery.proses-upload');
+Route::get('/gallery/view-gallery/{id}', [GalleryController::class, 'viewGallery'])->name('gallery.viewGallery');
+
