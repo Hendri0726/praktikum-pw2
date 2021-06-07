@@ -33,6 +33,14 @@ class BeritaController extends Controller
 
     public function tambah(Request $request)
     {
+	 $target_directory = 'gambar';
+        $request->validate([
+            'fileUpload' => 'mimes:png,jpg|max:1024',
+        ]);
+        $file = $request->file('fileUpload');
+        $filename = time() . '-' . $file->getClientOriginalName();
+        $request->fileUpload->move(public_path('gambar'), $filename);
+	
         $berita = new Berita();
         $berita->judul = $request->judul;
         $berita->isi = $request->isi;

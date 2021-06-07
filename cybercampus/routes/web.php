@@ -1,9 +1,13 @@
 <?php
-
-use App\Http\Controllers\LayananController;
+use Illuminate\Http\Request;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\SiteBackendController;
+use App\models\Layanan;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\GalleryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,7 +44,7 @@ Route::get('/list-dosen/{tahun}', [SiteController::class, 'listDosen']);
 Route::get('cobalangsung', function(){
     echo "test lansung dari route";
 });
-
+//CRUD Kategori
 Route::get('/admin/kategori/index', [KategoriController::class, 'index'])->name('admin.kategori.index')->middleware('auth');
 Route::get('/admin/kategori/formtambah', [KategoriController::class, 'formTambah'])->name('admin.kategori.formTambah')->middleware('auth');
 Route::get('/admin/kategori/formubah/{id}', [KategoriController::class, 'formUbah'])->name('admin.kategori.formUbah')->middleware('auth');
@@ -49,6 +53,7 @@ Route::post('/admin/kategori/ubah/{id}', [KategoriController::class, 'ubah'])->n
 Route::get('/admin/kategori/detail/{id}', [KategoriController::class, 'detail'])->name('admin.kategori.detail')->middleware('auth');
 Route::get('/admin/kategori/hapus/{id}', [KategoriController::class, 'hapus'])->name('admin.kategori.hapus')->middleware('auth');
 
+//CRUD Berita
 Route::get('/admin/berita/index', [BeritaController::class, 'index'])->name('admin.berita.index')->middleware(['auth', 'permission:index-berita']);
 Route::get('/admin/berita/detail/{id}', [BeritaController::class, 'detail'])->name('admin.berita.detail')->middleware(['auth', 'permission:detail-berita']);
 Route::get('/admin/berita/formtambah', [BeritaController::class, 'formTambah'])->name('admin.berita.formtambah')->middleware(['auth', 'permission:menambahkan-berita']);
@@ -80,6 +85,7 @@ Route::get('/cobaform', [SiteController::class, 'cobaForm'])->name('cobaform');
 
 Route::post('/prosesform', [SiteController::class, 'prosesForm'])->name('prosesform');
 
+//layanan Backend
 Route::get('/layanan/index_backend', [SiteBackendController::class, 'indexBackend'])->name('layanan.index_backend');
 Route::get('/admin/dashboard', [SiteBackendController::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/layanan', [SiteBackendController::class, 'indexBackend'])->name('admin.layanan');
